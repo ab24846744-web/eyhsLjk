@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>언양고등학교 정보동아리 - 포트폴리오</title>
+    <!-- Tailwind CSS CDN 및 다크모드 클래스 설정 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght=300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Pretendard', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        /* Custom Glowing effects */
+        .glow-blue {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.08);
+        }
+        .dark .glow-blue {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+        }
+        .glow-purple {
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.08);
+        }
+        .dark .glow-purple {
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between bg-slate-50 text-slate-800 dark:bg-[#0b0f19] dark:text-slate-100 transition-colors duration-300">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-40 bg-white/80 dark:bg-[#0f172a]/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
+                        U
+                    </div>
+                    <span class="font-extrabold text-xl bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+                        언양고 정보동아리
+                    </span>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+                    <a href="#about" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">소개</a>
+                    <a href="#tech" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">기술 스택</a>
+                    <a href="#projects" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">프로젝트</a>
+                    <a href="#timeline" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">활동 기록</a>
+                    <a href="#ai-recommend" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">AI 추천기</a>
+                    <a href="#guestbook" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">방명록</a>
+                    
+                    <!-- Theme Toggle Button (Desktop) -->
+                    <button class="theme-toggle-btn p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all ml-2" aria-label="테마 변경">
+                        <i class="w-5 h-5" data-lucide="moon"></i>
+                    </button>
+                </div>
+                
+                <!-- Mobile Top Bar Actions -->
+                <div class="flex items-center gap-2 md:hidden">
+                    <!-- Theme Toggle Button (Mobile Quick access) -->
+                    <button class="theme-toggle-btn p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all" aria-label="테마 변경">
+                        <i class="w-5 h-5" data-lucide="moon"></i>
+                    </button>
+                    <!-- Mobile menu button -->
+                    <button id="mobile-menu-btn" class="p-2 rounded-md text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800">
+                        <i data-lucide="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-[#0f172a] border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-4 space-y-1 transition-colors duration-300">
+            <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white">소개</a>
+            <a href="#tech" class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white">기술 스택</a>
+            <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white">프로젝트</a>
+            <a href="#timeline" class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white">활동 기록</a>
+            <a href="#ai-recommend" class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white">AI 추천기</a>
+            <a href="#guestbook" class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white">방명록</a>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-24">
+        
+        <!-- Hero Section (About Me) -->
+        <section id="about" class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pt-4">
+            <div class="md:col-span-7 space-y-6">
+                <span class="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
+                    <span class="w-2 h-2 rounded-full bg-blue-500 dark:bg-blue-400 animate-pulse"></span>
+                    언양고등학교 2학년 정보 동아리
+                </span>
+                <h1 class="text-4xl sm:text-5xl font-black tracking-tight leading-none text-slate-950 dark:text-white">
+                    가상 세계의 가치와<br>
+                    <span class="bg-gradient-to-r from-blue-600 via-teal-500 to-purple-600 dark:from-blue-400 dark:via-teal-400 dark:to-purple-500 bg-clip-text text-transparent">현실 경제·경영을 잇는</span> 융합 개발자입니다.
+                </h1>
+                <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed max-w-xl">
+                    글로벌 메가 IP인 '포켓몬스터'의 생태계를 바탕으로 데이터 기반의 경제 이론과 경영 전략을 탐구합니다. 
+                    정보 기술(IT)을 활용해 게임 속 시장 원리를 분석하고 시뮬레이션 웹 어플리케이션을 기획하고 있습니다.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <a href="#projects" class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white px-5 py-3 rounded-xl font-semibold shadow-lg shadow-blue-500/20 transition-all transform hover:-translate-y-0.5">
+                        <i class="w-5 h-5" data-lucide="folder-git-2"></i> 프로젝트 보러가기
+                    </a>
+                    <a href="#guestbook" class="inline-flex items-center gap-2 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-800 dark:text-white px-5 py-3 rounded-xl font-semibold border border-slate-200 dark:border-slate-700 shadow-sm transition-all transform hover:-translate-y-0.5">
+                        <i class="w-5 h-5" data-lucide="message-square"></i> 응원 한마디 남기기
+                    </a>
+                </div>
+            </div>
+            <div class="md:col-span-5 flex justify-center">
+                <div class="relative w-64 h-64 sm:w-80 sm:h-80 group">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-blue-500 to-purple-600 rounded-3xl blur-xl opacity-20 dark:opacity-30 group-hover:opacity-40 transition-opacity"></div>
+                    <div class="relative w-full h-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden flex flex-col items-center justify-center p-6 glow-blue text-center transition-colors duration-300">
+                        <div class="w-24 h-24 rounded-full bg-slate-50 dark:bg-slate-800 border-2 border-purple-500/30 dark:border-purple-500/50 flex items-center justify-center mb-4 transition-colors duration-300">
+                            <i class="w-12 h-12 text-purple-600 dark:text-purple-400" data-lucide="coins"></i>
+                        </div>
+                        <h3 class="font-extrabold text-xl text-slate-950 dark:text-white">언양고 2학년 OOO</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">IT & Economic Convergence</p>
+                        <div class="flex gap-2.5 mt-4">
+                            <span class="bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 border border-blue-100 dark:border-blue-800/60 px-2.5 py-1 rounded text-xs font-semibold">Poke-Economics</span>
+                            <span class="bg-purple-50 dark:bg-purple-900/40 text-purple-600 dark:text-purple-300 border border-purple-100 dark:border-purple-800/60 px-2.5 py-1 rounded text-xs font-semibold">Data Analyst</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack Section -->
+        <section id="tech" class="space-y-8 scroll-mt-20">
+            <div class="text-center space-y-3">
+                <h2 class="text-3xl font-extrabold tracking-tight text-slate-950 dark:text-white">나의 융합 기술 스택</h2>
+                <p class="text-slate-600 dark:text-slate-400 max-w-lg mx-auto">기술과 비즈니스 이론을 접목하기 위해 다루어 본 핵심 도구와 지식입니다.</p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-5 rounded-2xl hover:border-blue-500/50 transition-all hover:bg-slate-100/50 dark:hover:bg-slate-900 transition-colors duration-300">
+                    <div class="w-10 h-10 rounded-lg bg-yellow-500/10 flex items-center justify-center text-yellow-600 dark:text-yellow-500 mb-4">
+                        <i data-lucide="line-chart"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-950 dark:text-white text-lg">Python (Pandas)</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">포켓몬 관련 시장 시세 데이터 분석 및 가공</p>
+                </div>
+                <div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-5 rounded-2xl hover:border-cyan-500/50 transition-all hover:bg-slate-100/50 dark:hover:bg-slate-900 transition-colors duration-300">
+                    <div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-600 dark:text-cyan-400 mb-4">
+                        <i data-lucide="layout-dashboard"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-950 dark:text-white text-lg">Web Front (JS)</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">경제학 지표 및 인플레이션 시뮬레이터 개발</p>
+                </div>
+                <div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-5 rounded-2xl hover:border-purple-500/50 transition-all hover:bg-slate-100/50 dark:hover:bg-slate-900 transition-colors duration-300">
+                    <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-600 dark:text-purple-400 mb-4">
+                        <i data-lucide="bar-chart-3"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-950 dark:text-white text-lg">경영 마케팅 이론</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">IP 비즈니스 가치 평가 및 OSMU 채널 분석</p>
+                </div>
+                <div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-5 rounded-2xl hover:border-green-500/50 transition-all hover:bg-slate-100/50 dark:hover:bg-slate-900 transition-colors duration-300">
+                    <div class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center text-green-600 dark:text-green-400 mb-4">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-950 dark:text-white text-lg">행동경제학</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">수집형 재화 시장의 한정성 마케팅 전략 이해</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Showcase Section -->
+        <section id="projects" class="space-y-8 scroll-mt-20">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                <div class="space-y-3">
+                    <h2 class="text-3xl font-extrabold tracking-tight text-slate-950 dark:text-white">포켓몬 융합형 프로젝트 쇼케이스</h2>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-lg">포켓몬이라는 친근한 IP 속에 숨겨진 경제학과 경영학 원리를 IT 기술로 도출해 낸 프로젝트들입니다.</p>
+                </div>
+                <div class="flex gap-1.5 bg-slate-200/60 dark:bg-slate-900 p-1.5 rounded-xl border border-slate-200/80 dark:border-slate-800 text-sm transition-colors duration-300">
+                    <button onclick="filterProjects('all')" class="project-tab active px-3.5 py-1.5 rounded-lg font-semibold bg-blue-600 text-white transition-all">전체</button>
+                    <button onclick="filterProjects('web')" class="project-tab px-3.5 py-1.5 rounded-lg font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all">경제 시뮬레이터</button>
+                    <button onclick="filterProjects('ai')" class="project-tab px-3.5 py-1.5 rounded-lg font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all">경영 마케팅</button>
+                </div>
+            </div>
+
+            <!-- Project Cards Grid -->
+            <div id="project-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Project 1 -->
+                <div class="project-card bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 transition-all cursor-pointer group flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300" data-category="web" onclick="openModal(1)">
+                    <div>
+                        <div class="relative h-48 bg-gradient-to-br from-indigo-100 to-slate-100 dark:from-indigo-950 dark:to-slate-950 flex items-center justify-center p-6">
+                            <i class="w-16 h-16 text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition-transform duration-300" data-lucide="scale"></i>
+                            <span class="absolute top-4 right-4 bg-indigo-500/10 text-indigo-600 dark:text-indigo-300 border border-indigo-500/20 px-2.5 py-1 rounded-full text-xs font-bold">경제분석</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="font-bold text-xl text-slate-950 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">인게임 인플레이션 체감 시뮬레이터</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">포켓몬 본가 게임에서 세대별로 인게임 상점 아이템 물가 변동과 통화량 공급 증가를 연계해 분석한 경제 분석 시뮬레이션 툴입니다.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 flex gap-2">
+                        <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded text-xs font-semibold">인플레이션</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded text-xs font-semibold">JS 시뮬레이터</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 transition-all cursor-pointer group flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300" data-category="ai" onclick="openModal(2)">
+                    <div>
+                        <div class="relative h-48 bg-gradient-to-br from-emerald-100 to-slate-100 dark:from-emerald-950 dark:to-slate-950 flex items-center justify-center p-6">
+                            <i class="w-16 h-16 text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform duration-300" data-lucide="gem"></i>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="font-bold text-xl text-slate-950 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">포켓몬 IP 비즈니스와 OSMU 성공 전략</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">세계 미디어 믹스 누적 매출 1위인 포켓몬스터의 원작 게임, 애니메이션, 완구, 콜라보 마케팅 등 다각화 비즈니스(OSMU) 구조를 파헤친 경영 분석 프로젝트입니다.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 flex gap-2">
+                        <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded text-xs font-semibold">OSMU 전략</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded text-xs font-semibold">브랜드 가치</span>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 transition-all cursor-pointer group flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300" data-category="web" onclick="openModal(3)">
+                    <div>
+                        <div class="relative h-48 bg-gradient-to-br from-rose-100 to-slate-100 dark:from-rose-950 dark:to-slate-950 flex items-center justify-center p-6">
+                            <i class="w-16 h-16 text-rose-600 dark:text-rose-400 group-hover:scale-110 transition-transform duration-300" data-lucide="trending-up"></i>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="font-bold text-xl text-slate-950 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">포켓몬 카드 TCG와 행동경제학 연구</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">포켓몬 TCG(트레이딩 카드 게임)의 한정판 카드 공급 통제와 소장 심리에 따른 프리미엄 거래 시장을 공급-수요 곡선 및 밴드왜건 효과로 조명한 시뮬레이션입니다.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 flex gap-2">
+                        <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded text-xs font-semibold">수요와 공급</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded text-xs font-semibold">희소성 마케팅</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activities Timeline -->
+        <section id="timeline" class="space-y-8 scroll-mt-20">
+            <div class="text-center space-y-3">
+                <h2 class="text-3xl font-extrabold tracking-tight text-slate-950 dark:text-white">학업 및 탐구 타임라인</h2>
+                <p class="text-slate-600 dark:text-slate-400 max-w-lg mx-auto">일상의 흥미(포켓몬)에서 학문적 깊이(경제·경영·IT)를 도출해 낸 성장 이력입니다.</p>
+            </div>
+            
+            <div class="relative border-l-2 border-slate-200 dark:border-slate-800 ml-4 md:ml-32 py-2 space-y-12 transition-colors duration-300">
+                <!-- Timeline Item 1 -->
+                <div class="relative pl-8 md:pl-12">
+                    <div class="absolute -left-3.5 top-1.5 w-6 h-6 rounded-full bg-white dark:bg-slate-950 border-4 border-blue-500 flex items-center justify-center"></div>
+                    <div class="absolute hidden md:block -left-36 top-1.5 text-right w-24">
+                        <span class="font-bold text-blue-600 dark:text-blue-400 text-lg">2026년 5월</span>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/80 p-6 rounded-2xl glow-blue transition-colors duration-300">
+                        <span class="md:hidden block text-xs font-bold text-blue-600 dark:text-blue-400 mb-1">2026년 5월</span>
+                        <h4 class="font-bold text-slate-950 dark:text-white text-xl">교내 탐구 발표대회 참가</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-2 leading-relaxed">
+                            '포켓몬 TCG 유통 경제와 한정판 거래 시장의 메커니즘 분석'을 주제로 전교생 대상 피피티 발표를 진행했습니다. 
+                            정보 교과 시간에 다룬 웹 스크래핑 기법을 적용해 실제 카드 리셀가 변동 데이터를 시각화하여 큰 인기를 끌었습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="relative pl-8 md:pl-12">
+                    <div class="absolute -left-3.5 top-1.5 w-6 h-6 rounded-full bg-white dark:bg-slate-950 border-4 border-purple-500 flex items-center justify-center"></div>
+                    <div class="absolute hidden md:block -left-36 top-1.5 text-right w-24">
+                        <span class="font-bold text-purple-600 dark:text-purple-400 text-lg">2026년 4월</span>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/80 p-6 rounded-2xl glow-purple transition-colors duration-300">
+                        <span class="md:hidden block text-xs font-bold text-purple-600 dark:text-purple-400 mb-1">2026년 4월</span>
+                        <h4 class="font-bold text-slate-950 dark:text-white text-xl">게임 기획과 미시경제학 교류 스터디</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-2 leading-relaxed">
+                            게임 디자인과 실제 화폐 가치의 상호 연관성에 매료되어, 친구들과 함께 '자본주의 경제 원리로 돌아가는 인게임 가상 사회 시뮬레이션 모델'을 가상의 파이썬 프로그래밍 설계도로 구축하였습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="relative pl-8 md:pl-12">
+                    <div class="absolute -left-3.5 top-1.5 w-6 h-6 rounded-full bg-white dark:bg-slate-950 border-4 border-teal-500 flex items-center justify-center"></div>
+                    <div class="absolute hidden md:block -left-36 top-1.5 text-right w-24">
+                        <span class="font-bold text-teal-600 dark:text-teal-400 text-lg">2026년 3월</span>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/80 p-6 rounded-2xl transition-colors duration-300">
+                        <span class="md:hidden block text-xs font-bold text-teal-600 dark:text-teal-400 mb-1">2026년 3월</span>
+                        <h4 class="font-bold text-slate-950 dark:text-white text-xl">정보동아리 프로젝트 테마 선정</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-2 leading-relaxed">
+                            딱딱한 알고리즘에서 벗어나 자신이 흥미를 갖는 소재인 '포켓몬 IP'를 경영학 지표로 수치화하겠다는 독자적 탐구 로드맵을 선포했습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Project Recommendation Assistant -->
+        <section id="ai-recommend" class="space-y-8 scroll-mt-20">
+            <div class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-slate-200 dark:border-slate-800 p-8 sm:p-10 transition-colors duration-300">
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+                <div class="absolute -left-20 -top-20 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
+                
+                <div class="relative z-10 max-w-2xl mx-auto text-center space-y-6">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-500 to-purple-500 flex items-center justify-center text-white mx-auto shadow-lg shadow-blue-500/20">
+                        <i data-lucide="sparkles"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-950 dark:text-white">Poke-Economy AI 아이디어 제안기</h2>
+                        <p class="text-sm text-slate-600 dark:text-slate-300">좋아하는 포켓몬 혹은 경제/경영 단어(예: 피카츄 콜라보, 희소성 마케팅, 닌텐도 주가)를 입력하면 신선한 융합 프로젝트를 제안해 줄게!</p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-2 mt-4">
+                        <input id="ai-input" type="text" placeholder="예: 빵 콜라보 마케팅, 리셀 가격, 포켓몬 GO 위치기반 경영" class="flex-grow bg-white dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-slate-950 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-all text-sm shadow-sm">
+                        <button onclick="getAIRecommendation()" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm whitespace-nowrap shadow-lg shadow-blue-500/15">
+                            <i class="w-4 h-4" data-lucide="wand-2"></i> 아이디어 생성하기
+                        </button>
+                    </div>
+
+                    <!-- AI Result Display Area -->
+                    <div id="ai-loading" class="hidden flex flex-col items-center justify-center py-8 space-y-3">
+                        <div class="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Gemini AI가 기발한 포켓몬 비즈니스 기획을 완성하는 중...</p>
+                    </div>
+
+                    <div id="ai-result-box" class="hidden text-left bg-white dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl space-y-4 shadow-md transition-colors duration-300">
+                        <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+                            <span class="text-xs font-bold text-blue-600 dark:text-blue-400 flex items-center gap-1">
+                                <i class="w-3.5 h-3.5" data-lucide="check-circle-2"></i> 융합 탐구 제안 완료
+                            </span>
+                            <button onclick="clearAIResult()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"><i class="w-4 h-4" data-lucide="x"></i></button>
+                        </div>
+                        <div id="ai-result-content" class="text-slate-700 dark:text-slate-200 text-sm leading-relaxed whitespace-pre-line">
+                            <!-- AI Generated Content goes here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Guestbook (In-Memory Room) -->
+        <section id="guestbook" class="space-y-8 scroll-mt-20">
+            <div class="text-center space-y-3">
+                <h2 class="text-3xl font-extrabold tracking-tight text-slate-950 dark:text-white">방문자 방명록 & 응원</h2>
+                <p class="text-slate-600 dark:text-slate-400 max-w-lg mx-auto">포켓몬과 경제경영 융합 탐구 포트폴리오를 응원해 주세요! 조언 한마디는 큰 힘이 됩니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                <!-- Guestbook Form (Col 5) -->
+                <form id="guestbook-form" onsubmit="addMessage(event)" class="md:col-span-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl space-y-4 h-fit shadow-sm transition-colors duration-300">
+                    <h3 class="font-bold text-slate-950 dark:text-white text-lg flex items-center gap-2"><i class="w-5 h-5 text-blue-600 dark:text-blue-400" data-lucide="pen-tool"></i> 메시지 남기기</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">작성자</label>
+                            <input id="guest-name" type="text" required placeholder="이름 혹은 별명" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2.5 text-slate-950 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:border-blue-500 transition-all text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">메시지</label>
+                            <textarea id="guest-text" required rows="3" placeholder="남길 따뜻한 응원의 메시지" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2.5 text-slate-950 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:border-blue-500 transition-all text-sm"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-white font-semibold py-2.5 rounded-xl transition-colors text-sm flex items-center justify-center gap-1.5">
+                        <i class="w-4 h-4" data-lucide="send"></i> 등록하기
+                    </button>
+                </form>
+
+                <!-- Message List (Col 7) -->
+                <div class="md:col-span-7 space-y-4">
+                    <h3 class="font-bold text-slate-950 dark:text-white text-lg flex items-center gap-2"><i class="w-5 h-5 text-purple-600 dark:text-purple-400" data-lucide="messages-square"></i> 최근 등록글</h3>
+                    <div id="message-container" class="space-y-3 max-h-[350px] overflow-y-auto pr-2">
+                        <!-- Messages dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-900 py-8 mt-16 text-center text-slate-500 text-sm transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 space-y-4">
+            <div class="flex justify-center gap-6 text-slate-400 dark:text-slate-500">
+                <a href="#" class="hover:text-slate-800 dark:hover:text-white transition-colors"><i class="w-5 h-5" data-lucide="github"></i></a>
+                <a href="#" class="hover:text-slate-800 dark:hover:text-white transition-colors"><i class="w-5 h-5" data-lucide="mail"></i></a>
+                <a href="#" class="hover:text-slate-800 dark:hover:text-white transition-colors"><i class="w-5 h-5" data-lucide="instagram"></i></a>
+            </div>
+            <p>© 2026 언양고등학교 정보동아리 OOO. All rights reserved.</p>
+            <p class="text-xs text-slate-400 dark:text-slate-600">Built for Pokemon & Business Economics portfolio with interactive animations.</p>
+        </div>
+    </footer>
+
+    <!-- Project Detail Modal -->
+    <div id="project-modal" class="hidden fixed inset-0 z-50 bg-slate-950/60 dark:bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-2xl overflow-hidden max-h-[90vh] flex flex-col transition-colors duration-300">
+            <!-- Modal Header -->
+            <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
+                <h3 id="modal-title" class="font-extrabold text-2xl text-slate-950 dark:text-white">프로젝트 제목</h3>
+                <button onclick="closeModal()" class="p-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"><i data-lucide="x"></i></button>
+            </div>
+            <!-- Modal Content (Scrollable) -->
+            <div class="p-6 overflow-y-auto space-y-6">
+                <!-- Category Badge -->
+                <div>
+                    <span id="modal-category" class="bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 px-3 py-1 rounded-full text-xs font-semibold">카테고리</span>
+                </div>
+                <!-- Description -->
+                <div class="space-y-2">
+                    <h4 class="font-bold text-slate-950 dark:text-white text-lg">💡 프로젝트 소개</h4>
+                    <p id="modal-desc" class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">상세 설명</p>
+                </div>
+                <!-- Implementation Features -->
+                <div class="space-y-2">
+                    <h4 class="font-bold text-slate-950 dark:text-white text-lg">🛠 핵심 기능 및 사용 기술</h4>
+                    <ul id="modal-features" class="list-disc list-inside text-slate-700 dark:text-slate-300 text-sm space-y-1">
+                        <!-- Features list -->
+                    </ul>
+                </div>
+                <!-- Achievements / What I learned -->
+                <div class="space-y-2 bg-slate-50 dark:bg-slate-950/50 border border-slate-100 dark:border-slate-800/80 p-4 rounded-xl">
+                    <h4 class="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-1.5"><i class="w-4 h-4 text-emerald-500 dark:text-emerald-400" data-lucide="award"></i> 얻은 배움과 깨달음</h4>
+                    <p id="modal-learn" class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed mt-1">배운 점 내용</p>
+                </div>
+            </div>
+            <!-- Modal Footer -->
+            <div class="p-6 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/40 flex justify-end">
+                <button onclick="closeModal()" class="bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold px-5 py-2 rounded-xl text-sm transition-colors">
+                    닫기
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- UI/UX Script -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close Mobile Menu on Click Anchor
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Projects Data (Pokemon & Economy & Management Fusion)
+        const projectsData = {
+            1: {
+                title: "인게임 인플레이션 체감 시뮬레이터",
+                category: "포켓몬 가상 경제 연구",
+                desc: "포켓몬 본가 게임 시리즈(1세대 '레드·블루'부터 9세대 '스칼렛·바이올렛'까지)의 화폐 획득 난이도와 '몬스터볼', '상처약' 등 기본 물품의 고정 가격 추이를 미시경제학적 지표로 계량화한 웹 대시보드입니다. 플레이 도중 무제한으로 복사되거나 보상으로 쉽게 획득할 수 있는 게임 내 화폐(포켓부)의 공급 과잉으로 인한 게임 경제 무력화(인플레이션)를 수학적으로 시뮬레이션합니다.",
+                features: [
+                    "세대별 배틀 승리 보상 골드와 상점 물품 가격비율 수치화",
+                    "게임 속 금구슬 및 각종 도구의 판매 가치를 기준으로 한 실질 구매력 지수 계산",
+                    "유저가 직접 통화량 및 세대 설정을 조절해 가며 화폐 가치 하락을 체감하는 JS 인터랙티브 그래프",
+                    "중앙은행이 없는 가상 생태계에서 '골드 싱크(Gold Sink, 재화 소모 유도 장치)'의 경제 안정화 기여도 분석"
+                ],
+                learn: "가상 자산과 실물 화폐 시장의 공통적 유동성 문제를 분석하며 거시경제학의 화폐수량설($M \\cdot V = P \\cdot Y$)이 가상 게임 생태계 설계에도 직관적으로 반영된다는 사실을 도출해 냈습니다."
+            },
+            2: {
+                title: "포켓몬 IP 비즈니스와 OSMU 성공 전략",
+                category: "경영전략 & 마케팅",
+                desc: "1996년 출시 이후 누적 매출 100조 원 이상을 돌파하여 마블, 스타워즈를 제치고 글로벌 1위 미디어 믹스로 자리매김한 포켓몬스터의 원소스 멀티유즈(OSMU) 경영 전략 비결을 4P 믹스 및 STP 전략 관점에서 분석한 경영 탐구서입니다.",
+                features: [
+                    "포켓몬 본가 게임을 핵심 소스(Core Value)로 삼고 굿즈, 영화, TCG, 테마파크로 확장하는 OSMU 가치 사슬 모델 구축",
+                    "SPC 삼립 포켓몬 빵, 편의점 콜라보 제품 등 한정판 띠부씰 스티커 마케팅의 국내 성공 사례 연구",
+                    "세대별 캐릭터(1세대 피카츄 vs 9세대 뜨아거 등) 타겟 고객 다변화 브랜드 노화 극복(Brand Revitalization) 전략 도출",
+                    "포켓몬 GO의 GPS 위치 정보 기술을 활용한 리테일 상생 플랫폼 비즈니스 비즈니스 캔버스 모델 정립"
+                ],
+                learn: "단순 완구 산업을 넘어 IP(Intellectual Property)가 소비자에게 선사하는 감정적 애착이 어떻게 강력한 브랜드 로열티와 자발적인 구전 효과(Viral)를 유발하는지 기업 경영 이론을 접목해 파악했습니다."
+            },
+            3: {
+                title: "포켓몬 카드 TCG와 행동경제학 연구",
+                category: "소비자 행동경제학",
+                desc: "포켓몬 트레이딩 카드 게임(TCG) 시장에서 소장용 카드가 가지는 경제학적 '희소 가치' 형성과 프리미엄 거래 시장의 이상 과열 현상을 현대 경제 이론으로 규명하는 프로젝트입니다. 공급 제어 정책과 유통 환경의 관계를 고찰합니다.",
+                features: [
+                    "한정 부스터 팩 공급 제한(Scarcity Marketing)과 중고 마켓 거래 가격 간의 연관성 데이터 분석",
+                    "동일한 사양이지만 디자인이나 테두리가 다른 카드 홀로그램 사양이 이끄는 유저 지불의사(Willingness To Pay) 변화 측정",
+                    "사람들이 카드를 실제 가치보다 과대평가하는 베블런 효과(Veblen Effect) 및 남들을 따라 수집하는 밴드왜건 효과 심리 모델링",
+                    "모의 포켓몬 카드 뽑기 확률을 적용하여 기대 효용 이론과 프로스펙트 이론(손실 회피성)을 대조하는 웹 인터랙티브 패널 구현"
+                ],
+                learn: "시장의 보이지 않는 손(수요와 공급 법칙)이 한정 수집 재화 시장에서도 철저히 들어맞는 과정과 유저들의 비합리적 과시욕 및 소유 효과(Endowment Effect) 등 인간 중심 행동경제학 이론의 유용함을 실증했습니다."
+            }
+        };
+
+        // Project Filter
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const tabs = document.querySelectorAll('.project-tab');
+            
+            // Manage Active Class for buttons
+            tabs.forEach(tab => {
+                tab.classList.remove('bg-blue-600', 'text-white');
+                tab.classList.add('text-slate-600', 'dark:text-slate-400');
+            });
+            if (event && event.target) {
+                event.target.classList.add('bg-blue-600', 'text-white');
+                event.target.classList.remove('text-slate-600', 'dark:text-slate-400');
+            }
+
+            // Toggle visibility
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Project Modal Functions
+        function openModal(id) {
+            const data = projectsData[id];
+            if (!data) return;
+
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-category').innerText = data.category;
+            document.getElementById('modal-desc').innerText = data.desc;
+            document.getElementById('modal-learn').innerText = data.learn;
+
+            // Features setup
+            const featuresContainer = document.getElementById('modal-features');
+            featuresContainer.innerHTML = '';
+            data.features.forEach(feat => {
+                const li = document.createElement('li');
+                li.className = 'text-slate-700 dark:text-slate-300 text-sm';
+                li.innerText = feat;
+                featuresContainer.appendChild(li);
+            });
+
+            document.getElementById('project-modal').classList.remove('hidden');
+        }
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('project-modal').classList.add('hidden');
+        }
+
+        // Close modal on background click
+        document.getElementById('project-modal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('project-modal')) {
+                closeModal();
+            }
+        });
+
+
+        // ----------------- LIGHT / DARK MODE TOGGLE LOGIC -----------------
+        const themeToggleBtns = document.querySelectorAll('.theme-toggle-btn');
+        const htmlElement = document.documentElement;
+
+        // Check local storage or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'light' || (!savedTheme && !systemPrefersDark)) {
+            htmlElement.classList.remove('dark');
+            updateToggleIcons(false);
+        } else {
+            htmlElement.classList.add('dark');
+            updateToggleIcons(true);
+        }
+
+        // Toggle Buttons Handler
+        themeToggleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (htmlElement.classList.contains('dark')) {
+                    htmlElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                    updateToggleIcons(false);
+                } else {
+                    htmlElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                    updateToggleIcons(true);
+                }
+            });
+        });
+
+        function updateToggleIcons(isDark) {
+            themeToggleBtns.forEach(btn => {
+                const icon = btn.querySelector('i');
+                if (icon) {
+                    if (isDark) {
+                        icon.setAttribute('data-lucide', 'sun');
+                        btn.classList.add('text-amber-500');
+                        btn.classList.remove('text-slate-700');
+                    } else {
+                        icon.setAttribute('data-lucide', 'moon');
+                        btn.classList.remove('text-amber-500');
+                        btn.classList.add('text-slate-700');
+                    }
+                }
+            });
+            // Re-render only if lucide is loaded
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        }
+
+
+        // ----------------- IN-MEMORY GUESTBOOK LOGIC -----------------
+        let guestbookMessages = [
+            { id: 1, name: "정은우 (동아리 기장)", text: "우와! 포켓몬 카드와 경제 이론을 엮을 생각을 하다니 진짜 기발해!", date: "2026.05.28" },
+            { id: 2, name: "강지훈 (경영학과 지망 부원)", text: "인게임 인플레이션 계산 공식은 경제학과에서도 흥미로워할 주제네요!", date: "2026.05.29" }
+        ];
+
+        function renderMessages() {
+            const container = document.getElementById('message-container');
+            if (!container) return;
+            container.innerHTML = '';
+            
+            if (guestbookMessages.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 bg-white dark:bg-slate-900/30 rounded-2xl border border-slate-200 dark:border-slate-800/50 text-slate-500 text-sm">
+                        첫 번째로 방명록을 작성해 보세요!
+                    </div>
+                `;
+                return;
+            }
+
+            guestbookMessages.forEach(msg => {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-xl flex justify-between items-start space-x-4 shadow-sm transition-colors duration-300";
+                messageDiv.innerHTML = `
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-slate-900 dark:text-slate-200 text-sm">${msg.name}</span>
+                            <span class="text-slate-400 dark:text-slate-600 text-[10px]">${msg.date}</span>
+                        </div>
+                        <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed">${msg.text}</p>
+                    </div>
+                    <button onclick="deleteMessage(${msg.id})" class="text-slate-400 hover:text-rose-500 dark:text-slate-600 dark:hover:text-rose-400 transition-colors">
+                        <i class="w-4 h-4" data-lucide="trash-2"></i>
+                    </button>
+                `;
+                container.appendChild(messageDiv);
+            });
+
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        }
+
+        function addMessage(event) {
+            event.preventDefault();
+            const nameInput = document.getElementById('guest-name');
+            const textInput = document.getElementById('guest-text');
+            if (!nameInput || !textInput) return;
+            
+            const today = new Date();
+            const formattedDate = `${today.getFullYear()}.${String(today.getMonth() + 1).padStart(2, '0')}.${String(today.getDate()).padStart(2, '0')}`;
+
+            const newMessage = {
+                id: Date.now(),
+                name: nameInput.value.trim(),
+                text: textInput.value.trim(),
+                date: formattedDate
+            };
+
+            guestbookMessages.unshift(newMessage);
+            renderMessages();
+
+            // Clear Input
+            nameInput.value = '';
+            textInput.value = '';
+        }
+
+        function deleteMessage(id) {
+            guestbookMessages = guestbookMessages.filter(msg => msg.id !== id);
+            renderMessages();
+        }
+
+        // ----------------- GEMINI AI RECOMMENDATION LOGIC -----------------
+        const apiKey = ""; // The execution environment provides the key at runtime automatically
+
+        async function getAIRecommendation() {
+            const inputField = document.getElementById('ai-input');
+            if (!inputField) return;
+            const query = inputField.value.trim();
+            if (!query) return;
+
+            const loadingEl = document.getElementById('ai-loading');
+            const resultBox = document.getElementById('ai-result-box');
+            const resultContent = document.getElementById('ai-result-content');
+
+            if (!loadingEl || !resultBox || !resultContent) return;
+
+            // Show loading, hide result box
+            loadingEl.classList.remove('hidden');
+            resultBox.classList.add('hidden');
+
+            const systemPrompt = "너는 대한민국 고등학교의 친절한 정보교과 교사이자 경제·경영 융합동아리 지도교사야. 학생이 관심 있어 하는 포켓몬 혹은 경제/경영 키워드를 기반으로, 고등학생 수준에서 탐구해 볼 수 있는 '포켓몬 IP & 비즈니스·경제 융합 탐구 프로젝트' 아이디어를 2가지 구체적으로 설계해 줘. 각 아이디어는 [프로젝트 명], [탐구할 경제·경영 이론(예: 기회비용, 독점시장, 마케팅 전략 등)], [구현할 IT/정보 가상 결과물]을 포함해서 재미있고 명료하게 짜 주렴. 고등학생에게 아주 다정하고 용기를 북돋아 주는 격려 어조(~란다, ~해보렴)를 사용해줘.";
+            const userQuery = `내가 관심 있는 포켓몬 융합 키워드는 다음과 같아: ${query}. 재미있는 프로젝트 2가지를 제안해 줘.`;
+
+            let success = false;
+            let retries = 5;
+            let delay = 1000;
+
+            while (retries > 0 && !success) {
+                try {
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            contents: [{ parts: [{ text: userQuery }] }],
+                            systemInstruction: { parts: [{ text: systemPrompt }] }
+                        })
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                        if (text) {
+                            resultContent.textContent = text;
+                            loadingEl.classList.add('hidden');
+                            resultBox.classList.remove('hidden');
+                            success = true;
+                        } else {
+                            throw new Error("No text content returned");
+                        }
+                    } else {
+                        throw new Error(`API error: ${response.status}`);
+                    }
+                } catch (err) {
+                    retries--;
+                    if (retries === 0) {
+                        loadingEl.classList.add('hidden');
+                        resultBox.classList.remove('hidden');
+                        resultContent.innerHTML = "<span class='text-rose-400 font-semibold'>⚠️ AI 추천을 가져오는 데 문제가 발생했습니다. 잠시 후 다시 시도해 주세요.</span>";
+                    } else {
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        delay *= 2; // Exponential backoff
+                    }
+                }
+            }
+        }
+
+        function clearAIResult() {
+            const resultBox = document.getElementById('ai-result-box');
+            const inputField = document.getElementById('ai-input');
+            if (resultBox) resultBox.classList.add('hidden');
+            if (inputField) inputField.value = '';
+        }
+
+        // Initial Load Actions
+        window.onload = function() {
+            renderMessages();
+        }
+    </script>
+</body>
+</html>
